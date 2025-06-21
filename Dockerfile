@@ -4,8 +4,9 @@ ARG PORT=8051
 
 WORKDIR /app
 
-# Install uv
-RUN pip install uv
+# Install system dependencies and uv
+RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/* && \
+    pip install uv
 
 # Copy the MCP server files
 COPY . .
